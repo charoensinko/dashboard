@@ -1,5 +1,0 @@
-streamlit
-plotly.express
-pandas
-plotly.figure_factory
-numpy
