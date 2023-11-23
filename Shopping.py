@@ -48,22 +48,24 @@ else:
     df4 = df3[df3["Location"].isin(location)]
 
 # Filter data based on selected Category, Season, Location
-if not category and not season and not location:
-    filtered_df = df
-elif not season and not location:
-    filtered_df = df[df["Category"].isin(category)]
-elif not category and not location:
-    filtered_df = df[df["Season"].isin(season)]
-elif not category and not season:
-    filtered_df = df[df["Location"].isin(location)]
-elif category and season:
-    filtered_df = df3[df["Category"].isin(category) & df["Season"].isin(season)]
-elif season and location:
-    filtered_df = df3[df["Season"].isin(season) & df["Location"].isin(location)]
-elif category and location:
-    filtered_df = df3[df["Category"].isin(category) & df["Location"].isin(location)]
-else:
-    filtered_df = df3[df["Category"].isin(category) & df["Season"].isin(season) & df["Location"].isin(location)]
+# if not category and not season and not location:
+#     filtered_df = df
+# elif not season and not location:
+#     filtered_df = df[df["Category"].isin(category)]
+# elif not category and not location:
+#     filtered_df = df[df["Season"].isin(season)]
+# elif not category and not season:
+#     filtered_df = df[df["Location"].isin(location)]
+# elif category and season:
+#     filtered_df = df3[df["Category"].isin(category) & df["Season"].isin(season)]
+# elif season and location:
+#     filtered_df = df3[df["Season"].isin(season) & df["Location"].isin(location)]
+# elif category and location:
+#     filtered_df = df3[df["Category"].isin(category) & df["Location"].isin(location)]
+# else:
+#     filtered_df = df3[df["Category"].isin(category) & df["Season"].isin(season) & df["Location"].isin(location)]
+
+filtered_df = df4
 
 category_df = filtered_df.groupby(by=["Category"], as_index=False)["Purchase Amount (USD)"].sum()
 
@@ -151,6 +153,11 @@ df_col = pivot_df2.columns.sort_values(ascending=False)
 # pivot_df2 = pivot_df2[["Yes", "No"]]
 pivot_df2 = pivot_df2[df_col] # sorted to Yes and No
 st.write(pivot_df2)
+
+# Show filtered data for 100 rows and button to download filtered data
+st.subheader(":point_right: Filtered data 100-rows display and filtered data download")
+with st.expander("Filtered Data:"):
+    st.write(filtered_df.head(100))
 
 # Show sample data and button to download original data
 st.subheader(":point_right: Sample data display and original data download")
