@@ -10,19 +10,21 @@ st.title(" :rainbow: Shopping EDA")
 st.markdown('<style>div.block-container{padding-top:1rem}</style>', unsafe_allow_html=True)
 
 # File upload
-fl = st.file_uploader(" :file_folder: Upload File", type=(["csv", "xlsx"," xls"]))
-if fl is not None:
-    filename = fl.name
-    # st.write(filename)
-    ext = filename.split('.')[-1]
-    if ext == "csv":
-        df = pd.read_csv(filename)
-    elif (ext == "xlsx") or (ext == "xls"):
-        df = pd.read_excel(filename)
-    else:
-        st.write("Please select CSV or Excel file.")
-else:
-    df = pd.read_csv("shopping_trends.csv")
+# fl = st.file_uploader(" :file_folder: Upload File", type=(["csv", "xlsx"," xls"]))
+# if fl is not None:
+#     filename = fl.name
+#     # st.write(filename)
+#     ext = filename.split('.')[-1]
+#     if ext == "csv":
+#         df = pd.read_csv(filename)
+#     elif (ext == "xlsx") or (ext == "xls"):
+#         df = pd.read_excel(filename)
+#     else:
+#         st.write("Please select CSV or Excel file.")
+# else:
+#     df = pd.read_csv("shopping_trends.csv")
+
+df = pd.read_csv("shopping_trends.csv")
 
 # Sidebar selector
 st.sidebar.header("Select your filter: ")
